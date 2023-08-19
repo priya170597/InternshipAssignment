@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SecondPageComponent1 from './SecondPageComponent1';
 import SecondPageComponent2 from './SecondPageComponent2';
