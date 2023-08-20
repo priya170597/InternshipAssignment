@@ -11,7 +11,15 @@ const FirstPage: React.FC = () => {
 
     const onSubmit = (data: any) => {
         localStorage.setItem('userDetails', JSON.stringify(data));
-        navigate('/second-page');
+        if (data.name && data.email && data.phoneNumber)
+        {
+            navigate('/second-page');
+        }
+        else
+        {
+            alert("Please Enter Your Details First to Continue");
+            navigate('/');
+        }
     };
 
 
@@ -21,16 +29,13 @@ const FirstPage: React.FC = () => {
             <form onSubmit = {handleSubmit(onSubmit)}>
                 <TextField 
                     label = "Name"
-                    {...register('name', { required: true })}
-                    error = {!!errors.name}
-                    helperText = {errors.name ? 'Name is required' : ''}
+                    {...register('name', {})}
                     fullWidth
                     margin = "normal"
                 />
                 <TextField 
                     label = "Phone Number"
                     {...register('phoneNumber', { 
-                        required: true,
                         pattern: /^[0-9]{10}$/, 
                     })}
                     inputMode="numeric"
@@ -42,7 +47,6 @@ const FirstPage: React.FC = () => {
                 <TextField 
                     label = "Email"
                     {...register('email', { 
-                        required: true,
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     })}
                     error={!!errors.email}
